@@ -1,10 +1,11 @@
 # 🛠️ Arquitetura Hexagonal
-
+<div>
 <img title="TypeScript" align="center" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" />
 <img title="Node.js" align="center" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" />
 <img title="Express.js" align="center" height="30" width="40" src="https://icongr.am/devicon/express-original.svg?si40&color=ffffff" />
 <img title="Prisma ORM" align="center" height="30" width="30" src="https://creazilla-store.fra1.digitaloceanspaces.com/icons/3256965/file-type-prisma-icon-md.png" />  
 <img title="PostgreSQL" align="center" height="30" width="30" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg" />  
+</div>
 
 ---
 
