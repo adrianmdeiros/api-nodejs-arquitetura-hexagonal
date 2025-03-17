@@ -10,8 +10,6 @@
 ---
 
 A __Arquitetura Hexagonal__, também conhecida como *Ports and Adapters*, é uma abordagem de design que visa isolar o núcleo da aplicação das dependências externas, como bancos de dados, interfaces de usuário, serviços externos, entre outros. Isso facilita a manutenção, teste e evolução do software. 
- 
-![alt text](.github/assets/image-1.png)
 
 ## 🏗️ Estrutura
 
