@@ -9,8 +9,7 @@
     "prisma:generate": "npx prisma generate --schema=./src/adapters/outbound/orm/prisma/schema.prisma",
     "dev": "npm run prisma:generate && tsx watch src/main/server.js",
     "start": "node dist/server.js",
-    "build": "tsup src/main/server.js",
-    "test": ""
+    "build": "tsup src/main/server.js"
   },
   "keywords": [],
   "author": "adrianmdeiros",
@@ -19,13 +18,13 @@
     "@types/cors": "^2.8.17",
     "@types/express": "^4.17.21",
     "@types/node": "^22.5.2",
-    "prisma": "^5.19.1",
+    "prisma": "^6.12.0",
     "tsup": "^8.2.4",
     "tsx": "^4.19.0",
     "typescript": "^5.5.4"
   },
   "dependencies": {
-    "@prisma/client": "^5.19.1",
+    "@prisma/client": "^6.12.0",
     "cors": "^2.8.5",
     "express": "^4.19.2"
   }
