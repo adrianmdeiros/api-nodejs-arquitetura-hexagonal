@@ -1,4 +1,4 @@
-import { ExpressAdapter } from "./adapters/in/http/framework/express/server";
+import { ExpressAdapter } from "./adapters/in/http/frameworks/express/server";
 
 const server = new ExpressAdapter()
 

@@ -1,7 +1,7 @@
 import { RentalServiceInputPort } from "../../ports/in/rental.service.input.port";
 import { RentalRepositoryOutputPort } from "../../ports/out/rental.repository.output.port";
-import { Rental } from "../domain/entities/rental";
-import { RentalItem } from "../domain/entities/rental-item";
+import { Rental } from "../domain/rental";
+import { RentalItem } from "../domain/rental-item";
 
 export class RentalService implements RentalServiceInputPort {
 
@@ -9,8 +9,8 @@ export class RentalService implements RentalServiceInputPort {
         private readonly rentalRepository: RentalRepositoryOutputPort
     ) { }
 
-    create(rental: Rental): void {
-        return this.rentalRepository.save(rental)
+    async create(rental: Rental): Promise<Rental> {
+        return await this.rentalRepository.save(rental)
     }
 
     addGameToRental(rentalItem: RentalItem, rental: Rental): void {
