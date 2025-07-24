@@ -4,13 +4,16 @@ import { RentalItem } from "./rental-item";
 export class Rental {
 
     constructor(
-        public readonly rentalItems: RentalItem[] = [],
         public readonly customer: Customer,
-        public readonly date: Date = new Date(Date.now())
+        public readonly date: Date = new Date(Date.now()),
+        public readonly rentalItems?: RentalItem[],
     ) { }
 
-    rehydrate(id: bigint, rentalItems: RentalItem[] = [], customer: Customer) {
-        const rental = new Rental(rentalItems, customer);
+    static rehydrate(
+        id: bigint, 
+        date: Date = new Date(Date.now()), 
+        rentalItems: RentalItem[], customer: Customer) {
+        const rental = new Rental(customer, date, rentalItems);
         (rental as any).id = id
 
         return rental
@@ -19,12 +22,12 @@ export class Rental {
     public readonly id!: bigint
 
     addItem(rentalItem: RentalItem): void {
-        this.rentalItems.push(rentalItem);
+        this.rentalItems?.push(rentalItem);
     }
 
     calculateTotalCost(): number {
         let totalRentalCost = 0
-        this.rentalItems.forEach((rentalItem) =>
+        this.rentalItems?.forEach((rentalItem) =>
             totalRentalCost += rentalItem.calculateRentalItemCost()
         )
         return totalRentalCost

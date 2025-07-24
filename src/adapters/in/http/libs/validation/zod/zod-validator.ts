@@ -1,7 +1,7 @@
-import { ValidatorInputPort } from "../../../../application/ports/in/validator.interface";
+import { DataValidatorInputPort } from "../../../../../../application/ports/in/data-validator.input.port";
 import { ZodType } from "zod";
 
-export class ZodValidatorAdapter implements ValidatorInputPort {
+export class ZodValidatorAdapter implements DataValidatorInputPort {
 
     constructor(
         private readonly schema: ZodType

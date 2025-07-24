@@ -10,10 +10,10 @@ datasource db {
 
 model Rental {
   id          BigInt       @id @default(autoincrement())
-  customer    Customer     @relation(fields: [customerId], references: [id])
   rentalItems RentalItem[]
-  date        DateTime     @default(now())
+  customer    Customer     @relation(fields: [customerId], references: [id])
   customerId  BigInt
+  date        DateTime     @default(now())
 
   @@index([customerId])
   @@map("rentals")
@@ -34,8 +34,8 @@ model Customer {
 model Game {
   id            BigInt         @id @default(autoincrement())
   name          String
-  platform      Platform[]
-  gamePlatforms GamePlatform[]
+  platforms     Platform[]
+  GamePlatform GamePlatform[]
 
   @@map("games")
 }
@@ -61,8 +61,8 @@ model Console {
 model Platform {
   id           BigInt         @id @default(autoincrement())
   name         String         @unique
-  Game         Game[]
-  GamePlatform GamePlatform[]
+  games        Game[]
+  gamePlatform GamePlatform[]
 
   @@map("platforms")
 }
@@ -83,15 +83,17 @@ model GamePlatform {
 }
 
 model RentalItem {
-  game     GamePlatform @relation(fields: [gameId, rentalId], references: [gameId, platformId])
-  days     Int
-  quantity Int
+  gamePlatform     GamePlatform @relation(fields: [gameId, platformId], references: [gameId, platformId])
+  gameId   BigInt
+  platformId BigInt
   rental   Rental       @relation(fields: [rentalId], references: [id])
   rentalId BigInt
-  gameId   BigInt
+  days     Int
+  quantity Int
 
-  @@id([gameId, rentalId])
+  @@id([gameId, platformId, rentalId])
   @@index([gameId])
+  @@index([platformId])
   @@index([rentalId])
   @@map("rental-items")
 }

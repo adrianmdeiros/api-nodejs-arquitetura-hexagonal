@@ -1,0 +1,84 @@
+import { PrismaClient } from "@prisma/client";
+import { Rental } from "../../../../../application/core/domain/rental";
+import { RentalItem } from "../../../../../application/core/domain/rental-item";
+import { RentalRepositoryOutputPort } from "../../../../../application/ports/out/rental.repository.output.port";
+import { Customer } from "../../../../../application/core/domain/customer";
+
+export class PrismaRentalRepositoryAdapter implements RentalRepositoryOutputPort {
+
+    constructor(
+        private prisma: PrismaClient
+    ) { }
+
+    async save(rental: Rental): Promise<Rental> {
+        const savedRental = await this.prisma.rental.create({
+            data: {
+                customerId: rental.customer.id,
+                rentalItems: {
+                    create: rental.rentalItems?.map(item => ({
+                        gameId: item.gamePlatform.game.id,
+                        platformId: item.gamePlatform.platform.id,
+                        days: item.days,
+                        quantity: item.quantity
+                    }))
+                }
+            },
+            select: {
+                id: true,
+                rentalItems: {
+                    include: {
+                        gamePlatform: {
+                            include: {
+                                game: true,
+                                platform: true
+                            }
+                        },
+                        rental: true
+                    }
+                },
+                customer: true,
+                date: true
+            }
+        })
+
+        const rentalItems = savedRental.rentalItems.map(item => {
+            const rentalItem = new RentalItem(item.days, item.quantity)
+            rentalItem['gamePlatform'] = item.gamePlatform
+            rentalItem['rental'] = savedRental as unknown as Rental
+            return rentalItem
+        })
+
+        const customer = Customer.rehydrate(
+            savedRental.customer.id,
+            savedRental.customer.name,
+            savedRental.customer.email,
+            savedRental.customer.phone,
+            savedRental.customer.password
+        )
+
+        return Rental.rehydrate(
+            savedRental.id,
+            savedRental.date,
+            rentalItems,
+            customer
+        )
+    }
+
+    async findById(id: bigint): Promise<Rental> {
+        throw new Error("Method not implemented.");
+    }
+
+    findAll(): Promise<Rental[]> {
+        throw new Error("Method not implemented.");
+    }
+
+    update(id: bigint, data: Partial<Rental>): Promise<Rental> {
+        throw new Error("Method not implemented.");
+    }
+
+    delete(id: bigint): Promise<void> {
+        throw new Error("Method not implemented.");
+    }
+
+
+}

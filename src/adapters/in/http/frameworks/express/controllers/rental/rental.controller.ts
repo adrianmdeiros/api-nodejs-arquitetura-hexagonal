@@ -1,14 +1,14 @@
 import { Request, Response } from "express";
 import { RentalRequest } from "../../../../dtos/in/rental-request.dto";
-import { ValidatorInputPort } from "../../../../../../../application/ports/in/validator.interface";
+import { DataValidatorInputPort } from "../../../../../../../application/ports/in/data-validator.input.port";
 import { RentalServiceInputPort } from "../../../../../../../application/ports/in/rental.service.input.port";
 import { RentalResponse } from "../../../../dtos/out/rental-response.dto";
-import { RentalMapper } from "./mapper/rental.mapper";
+import { RentalMapper } from "../../../../mappers/rental/rental.mapper";
 
 export class RentalController {
 
     constructor(
-        private readonly dataValidator: ValidatorInputPort,
+        private readonly dataValidator: DataValidatorInputPort,
         private readonly rentalService: RentalServiceInputPort,
         private readonly rentalMapper: RentalMapper
     ) { }

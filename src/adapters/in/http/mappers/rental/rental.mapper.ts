@@ -1,6 +1,6 @@
-import { Rental } from "../../../../../../../../application/core/domain/rental";
-import { RentalRequest } from "../../../../../dtos/in/rental-request.dto";
-import { RentalResponse } from "../../../../../dtos/out/rental-response.dto";
+import { Rental } from "../../../../../application/core/domain/rental"
+import { RentalRequest } from "../../dtos/in/rental-request.dto"
+import { RentalResponse } from "../../dtos/out/rental-response.dto"
 
 export class RentalMapper {
 

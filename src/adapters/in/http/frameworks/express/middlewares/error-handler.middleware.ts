@@ -3,7 +3,8 @@ import { APIError } from "../../../helpers/APIError";
 
 export const errorHandler = (
     err: Partial<APIError>,
-    req: Request, res: Response,
+    req: Request, 
+    res: Response,
     next: NextFunction) => {
     return err instanceof APIError ?
         res.status(err.statusCode).json({
