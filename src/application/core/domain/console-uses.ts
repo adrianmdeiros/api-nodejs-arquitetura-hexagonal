@@ -8,14 +8,14 @@ export class ConsoleUses {
         public readonly end: Date
     ) { }
 
-    rehydrate(id: bigint, console: Console, start: Date, end: Date) {
+    rehydrate(id: number, console: Console, start: Date, end: Date) {
         const consoleUses = new ConsoleUses(console, start, end);
         (consoleUses as any).id = id
 
         return consoleUses
     }
 
-    public readonly id!: bigint
+    public readonly id!: number
 
 
 

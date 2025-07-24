@@ -3,6 +3,7 @@ import { Rental } from "../../../../../application/core/domain/rental";
 import { RentalItem } from "../../../../../application/core/domain/rental-item";
 import { RentalRepositoryOutputPort } from "../../../../../application/ports/out/rental.repository.output.port";
 import { Customer } from "../../../../../application/core/domain/customer";
+import { GamePlatform } from "../../../../../application/core/domain/game-platform";
 
 export class PrismaRentalRepositoryAdapter implements RentalRepositoryOutputPort {
 
@@ -14,6 +15,7 @@ export class PrismaRentalRepositoryAdapter implements RentalRepositoryOutputPort
         const savedRental = await this.prisma.rental.create({
             data: {
                 customerId: rental.customer.id,
+                date: rental.date,
                 rentalItems: {
                     create: rental.rentalItems?.map(item => ({
                         gameId: item.gamePlatform.game.id,
@@ -43,7 +45,7 @@ export class PrismaRentalRepositoryAdapter implements RentalRepositoryOutputPort
 
         const rentalItems = savedRental.rentalItems.map(item => {
             const rentalItem = new RentalItem(item.days, item.quantity)
-            rentalItem['gamePlatform'] = item.gamePlatform
+            rentalItem['gamePlatform'] = item.gamePlatform as unknown as GamePlatform
             rentalItem['rental'] = savedRental as unknown as Rental
             return rentalItem
         })

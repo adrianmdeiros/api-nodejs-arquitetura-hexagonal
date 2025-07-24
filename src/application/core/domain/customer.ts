@@ -14,7 +14,7 @@ export class Customer {
   ) { }
 
   static rehydrate(
-    id: bigint,
+    id: number,
     name: string,
     email: string,
     phone: string,
@@ -28,7 +28,7 @@ export class Customer {
     return customer
   }
 
-  public readonly id!: bigint
+  public readonly id!: number
 
   rent(items: RentalItem[]) {
     const rental = new Rental(this, new Date(Date.now()), items)

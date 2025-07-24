@@ -5,14 +5,18 @@ import { RentalResponse } from "../../dtos/out/rental-response.dto"
 export class RentalMapper {
 
     toRental({ rentalItems, customer }: RentalRequest): Rental {
-        return new Rental(rentalItems, customer)
+        return new Rental(customer, new Date(Date.now()), rentalItems)
+    }
+
+    toRentalRequest({ rentalItems, customer }: any): RentalRequest {
+        return new RentalRequest(rentalItems, customer)
     }
 
     toRentalResponse({ rentalItems, customer, date }: Rental): RentalResponse {
         return {
-            rentalItems,
+            date,
             customer,
-            date
+            rentalItems: rentalItems!,
         }
     }
 }

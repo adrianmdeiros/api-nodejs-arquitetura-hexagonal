@@ -5,13 +5,13 @@ export class ConsoleAcessories {
         public readonly console: Console
     ) { }
 
-    regydrate(id: bigint, name: string, console: Console) {
+    regydrate(id: number, name: string, console: Console) {
         const consoleAcessories = new ConsoleAcessories(name, console);
         (consoleAcessories as any).id = id
 
         return consoleAcessories
     }
 
-    public readonly id!: bigint
+    public readonly id!: number
 
 }

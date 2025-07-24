@@ -9,10 +9,10 @@ datasource db {
 }
 
 model Rental {
-  id          BigInt       @id @default(autoincrement())
+  id          Int       @id @default(autoincrement())
   rentalItems RentalItem[]
   customer    Customer     @relation(fields: [customerId], references: [id])
-  customerId  BigInt
+  customerId  Int
   date        DateTime     @default(now())
 
   @@index([customerId])
@@ -20,7 +20,7 @@ model Rental {
 }
 
 model Customer {
-  id          BigInt        @id @default(autoincrement())
+  id          Int        @id @default(autoincrement())
   name        String
   email       String        @unique
   phone       String        @unique
@@ -32,25 +32,25 @@ model Customer {
 }
 
 model Game {
-  id            BigInt         @id @default(autoincrement())
+  id            Int         @id @default(autoincrement())
   name          String
   platforms     Platform[]
-  GamePlatform GamePlatform[]
+  gamePlatform GamePlatform[]
 
   @@map("games")
 }
 
 model ConsoleUses {
-  id         BigInt    @id @default(autoincrement())
-  Customer   Customer? @relation(fields: [customerId], references: [id])
-  customerId BigInt?
+  id         Int    @id @default(autoincrement())
+  customer   Customer? @relation(fields: [customerId], references: [id])
+  customerId Int?
 
   @@index([customerId])
   @@map("console-uses")
 }
 
 model Console {
-  id           BigInt              @id @default(autoincrement())
+  id           Int              @id @default(autoincrement())
   name         String
   pricePerHour Decimal
   acessories   ConsoleAcessories[]
@@ -59,7 +59,7 @@ model Console {
 }
 
 model Platform {
-  id           BigInt         @id @default(autoincrement())
+  id           Int         @id @default(autoincrement())
   name         String         @unique
   games        Game[]
   gamePlatform GamePlatform[]
@@ -72,8 +72,8 @@ model GamePlatform {
   platform   Platform @relation(fields: [platformId], references: [id])
   dailyPrice Decimal
 
-  gameId     BigInt
-  platformId BigInt
+  gameId     Int
+  platformId Int
   rentalItem RentalItem[]
 
   @@id([gameId, platformId])
@@ -84,10 +84,10 @@ model GamePlatform {
 
 model RentalItem {
   gamePlatform     GamePlatform @relation(fields: [gameId, platformId], references: [gameId, platformId])
-  gameId   BigInt
-  platformId BigInt
+  gameId   Int
+  platformId Int
   rental   Rental       @relation(fields: [rentalId], references: [id])
-  rentalId BigInt
+  rentalId Int
   days     Int
   quantity Int
 
@@ -99,10 +99,10 @@ model RentalItem {
 }
 
 model ConsoleAcessories {
-  id        BigInt  @id @default(autoincrement())
+  id        Int  @id @default(autoincrement())
   name      String
-  Console   Console @relation(fields: [consoleId], references: [id])
-  consoleId BigInt
+  console   Console @relation(fields: [consoleId], references: [id])
+  consoleId Int
 
   @@index([consoleId])
   @@map("console-acessories")

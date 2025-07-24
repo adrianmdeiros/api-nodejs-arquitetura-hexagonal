@@ -10,7 +10,7 @@ export class Rental {
     ) { }
 
     static rehydrate(
-        id: bigint, 
+        id: number, 
         date: Date = new Date(Date.now()), 
         rentalItems: RentalItem[], customer: Customer) {
         const rental = new Rental(customer, date, rentalItems);
@@ -19,7 +19,7 @@ export class Rental {
         return rental
     }
 
-    public readonly id!: bigint
+    public readonly id!: number
 
     addItem(rentalItem: RentalItem): void {
         this.rentalItems?.push(rentalItem);

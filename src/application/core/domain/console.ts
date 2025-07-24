@@ -11,7 +11,7 @@ export class Console {
     ) { }
 
     rehydrate(
-        id: bigint,
+        id: number,
         name: string,
         pricePerHour: number,
         consoleUses: ConsoleUses[] = [],
@@ -24,6 +24,6 @@ export class Console {
     }
 
 
-    public readonly id!: bigint
+    public readonly id!: number
 
 }

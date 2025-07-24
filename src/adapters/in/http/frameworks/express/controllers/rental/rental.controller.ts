@@ -1,8 +1,7 @@
 import { Request, Response } from "express";
-import { RentalRequest } from "../../../../dtos/in/rental-request.dto";
 import { DataValidatorInputPort } from "../../../../../../../application/ports/in/data-validator.input.port";
 import { RentalServiceInputPort } from "../../../../../../../application/ports/in/rental.service.input.port";
-import { RentalResponse } from "../../../../dtos/out/rental-response.dto";
+import { RentalRequest } from "../../../../dtos/in/rental-request.dto";
 import { RentalMapper } from "../../../../mappers/rental/rental.mapper";
 
 export class RentalController {
@@ -13,13 +12,17 @@ export class RentalController {
         private readonly rentalMapper: RentalMapper
     ) { }
 
-    async create(req: Request<RentalRequest>, res: Response<RentalResponse>) {
-        const validatedData = this.dataValidator.validate(req.body) as RentalRequest
-        const rental = this.rentalMapper.toRental(validatedData)
-        
-        await this.rentalService.create(rental)
+    async create(req: Request, res: Response) {
+        try {
+            const validatedData = this.dataValidator.validate(req.body)
+            const dto = this.rentalMapper.toRentalRequest(validatedData)
+            const rental = this.rentalMapper.toRental(dto)
+            await this.rentalService.create(rental)
+            return res.status(201).send()
 
-        return res.status(201)
+        } catch (error: any) {
+            return res.status(400).json({ error: error.message })
+        }
     }
 
 }

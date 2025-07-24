@@ -7,13 +7,13 @@ export class Platform {
         public readonly games?: Game[]
     ) { }
 
-    static rehydrate(id: bigint, name: string, games: Game[]): Platform {
+    static rehydrate(id: number, name: string, games: Game[]): Platform {
         const platform = new Platform(name, games);
         (platform as any).id = id
 
         return platform
     }
 
-    public readonly id!: bigint
+    public readonly id!: number
 
 }
