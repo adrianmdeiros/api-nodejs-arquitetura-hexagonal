@@ -14,6 +14,6 @@ const rentalService = new RentalService(rentalRepository)
 const rentalMapper = new RentalMapper()
 const rentalController = new RentalController(rentalValidator, rentalService, rentalMapper)
 
-rentalRouter.post('/rentals', rentalController.create)
+rentalRouter.post('/rentals', rentalController.create.bind(rentalController))
 
 export { rentalRouter }

@@ -1,0 +1,42 @@
+Criar uma locação
+{
+    "customer": {
+        "id": 1,
+        "name": "Maria Oliveira",
+        "email": "maria@example.com",
+        "phone": "11988887777",
+        "password": "senha_segura"
+    },
+    "rentalItems": [
+        {
+            "days": 4,
+            "quantity": 1,
+            "gamePlatform": {
+                "game": {
+                    "id": 1,
+                    "name": "FIFA 24"
+                },
+                "platform": {
+                    "id": 1,
+                    "name": "PS5"
+                },
+                "dailyPrice": 10.0
+            }
+        },
+        {
+            "days": 2,
+            "quantity": 2,
+            "gamePlatform": {
+                "game": {
+                    "id": 2,
+                    "name": "GTA V"
+                },
+                "platform": {
+                    "id": 1,
+                    "name": "PS5"
+                },
+                "dailyPrice": 8.0
+            }
+        }
+    ]
+}

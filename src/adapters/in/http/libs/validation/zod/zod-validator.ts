@@ -4,7 +4,7 @@ import { ZodType } from "zod";
 export class ZodValidatorAdapter implements DataValidatorInputPort {
 
     constructor(
-        public readonly schema: ZodType
+        private readonly schema: ZodType
     ) { }
 
     validate(data: unknown): unknown {

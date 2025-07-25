@@ -66,7 +66,7 @@ export class PrismaRentalRepositoryAdapter implements RentalRepositoryOutputPort
         )
     }
 
-    async findById(id: bigint): Promise<Rental> {
+    async findById(id: number): Promise<Rental> {
         throw new Error("Method not implemented.");
     }
 
@@ -74,11 +74,11 @@ export class PrismaRentalRepositoryAdapter implements RentalRepositoryOutputPort
         throw new Error("Method not implemented.");
     }
 
-    update(id: bigint, data: Partial<Rental>): Promise<Rental> {
+    update(id: number, data: Partial<Rental>): Promise<Rental> {
         throw new Error("Method not implemented.");
     }
 
-    delete(id: bigint): Promise<void> {
+    delete(id: number): Promise<void> {
         throw new Error("Method not implemented.");
     }
 

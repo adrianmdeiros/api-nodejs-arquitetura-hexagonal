@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
 import { DataValidatorInputPort } from "../../../../../../../application/ports/in/data-validator.input.port";
 import { RentalServiceInputPort } from "../../../../../../../application/ports/in/rental.service.input.port";
-import { RentalRequest } from "../../../../dtos/in/rental-request.dto";
 import { RentalMapper } from "../../../../mappers/rental/rental.mapper";
 
 export class RentalController {
@@ -14,7 +13,7 @@ export class RentalController {
 
     async create(req: Request, res: Response) {
         try {
-            const validatedData = this.dataValidator.validate(req.body)
+            const validatedData = await this.dataValidator.validate(req.body)
             const dto = this.rentalMapper.toRentalRequest(validatedData)
             const rental = this.rentalMapper.toRental(dto)
             await this.rentalService.create(rental)
