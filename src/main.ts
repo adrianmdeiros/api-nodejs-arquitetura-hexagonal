@@ -1,5 +1,14 @@
-import { ExpressAdapter } from "./adapters/in/http/frameworks/express/server";
+import 'reflect-metadata'
+import { container } from "tsyringe";
 
-const server = new ExpressAdapter()
+import "./config/repositories";
+import "./config/services";
+import "./config/controllers";
+import "./config/routes";
+import "./config/server";
+
+import { HttpServerInputPort } from './application/ports/in/http-server.input.port';
+
+const server = container.resolve<HttpServerInputPort>('HttpServerInputPort')
 
 server.listen()

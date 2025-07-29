@@ -1,7 +1,9 @@
+import { injectable } from "tsyringe"
 import { Rental } from "../../../../../application/core/domain/rental"
 import { RentalRequest } from "../../dtos/in/rental-request.dto"
 import { RentalResponse } from "../../dtos/out/rental-response.dto"
 
+@injectable()
 export class RentalMapper {
 
     toRental({ rentalItems, customer }: RentalRequest): Rental {

@@ -38,3 +38,6 @@ A __Arquitetura Hexagonal__, também conhecida como *Ports and Adapters*, é uma
 - **Desacoplamento** 🔗: A lógica de negócio não depende de frameworks ou tecnologias externas.
 - **Testabilidade** 🧪: Fica mais fácil testar o núcleo sem precisar de componentes externos.
 - **Facilidade de Mudança** 🔄: Mudanças nos adaptadores não afetam o núcleo da aplicação.
+
+<br/>
+<img src="./.github/images/Diagramas c4 model eng soft II-API.png" />

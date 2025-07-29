@@ -1,8 +1,9 @@
 import { Router } from "express";
 import { rentalRouter } from "./rental.routes";
+import { container } from "tsyringe";
 
 const routes = Router()
 
 routes.use(rentalRouter)
 
-export { routes }
+container.registerInstance('Routes', routes)

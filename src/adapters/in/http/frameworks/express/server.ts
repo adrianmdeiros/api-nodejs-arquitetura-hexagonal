@@ -1,14 +1,16 @@
-import express from 'express'
-import { Express } from "express";
-import { bodyParser, CORS, errorHandler } from './middlewares';
-import { routes } from './routes';
+import express, { Express, Router } from 'express';
+import { inject, injectable } from 'tsyringe';
 import { HttpServerInputPort } from '../../../../../application/ports/in/http-server.input.port';
+import { bodyParser, CORS, errorHandler } from './middlewares';
 
+@injectable()
 export class ExpressAdapter implements HttpServerInputPort {
     private app: Express
     private port = process.env.PORT || 5000
 
-    constructor() {
+    constructor(
+        @inject('Routes') private readonly routes: Router
+    ) {
         this.app = express()
         this.setupMiddlewares()
         this.setupRoutes()
@@ -21,7 +23,7 @@ export class ExpressAdapter implements HttpServerInputPort {
     }
 
     setupRoutes(): void {
-        this.app.use('/api', routes)
+        this.app.use('/api', this.routes)
     }
 
     listen(): unknown {

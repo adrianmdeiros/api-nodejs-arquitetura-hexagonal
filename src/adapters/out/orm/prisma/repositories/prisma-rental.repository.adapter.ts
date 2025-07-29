@@ -4,11 +4,13 @@ import { RentalItem } from "../../../../../application/core/domain/rental-item";
 import { RentalRepositoryOutputPort } from "../../../../../application/ports/out/rental.repository.output.port";
 import { Customer } from "../../../../../application/core/domain/customer";
 import { GamePlatform } from "../../../../../application/core/domain/game-platform";
+import { inject, injectable } from "tsyringe";
 
+@injectable()
 export class PrismaRentalRepositoryAdapter implements RentalRepositoryOutputPort {
 
     constructor(
-        private prisma: PrismaClient
+        @inject('PrismaClient') private prisma: PrismaClient
     ) { }
 
     async save(rental: Rental): Promise<Rental> {

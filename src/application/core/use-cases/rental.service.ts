@@ -1,11 +1,14 @@
+import { inject, injectable } from "tsyringe";
 import { RentalServiceInputPort } from "../../ports/in/rental.service.input.port";
 import { RentalRepositoryOutputPort } from "../../ports/out/rental.repository.output.port";
 import { Rental } from "../domain/rental";
 import { RentalItem } from "../domain/rental-item";
 
+@injectable()
 export class RentalService implements RentalServiceInputPort {
 
     constructor(
+        @inject('RentalRepositoryOutputPort')
         private readonly rentalRepository: RentalRepositoryOutputPort
     ) { }
 
