@@ -40,4 +40,16 @@ A __Arquitetura Hexagonal__, também conhecida como *Ports and Adapters*, é uma
 - **Facilidade de Mudança** 🔄: Mudanças nos adaptadores não afetam o núcleo da aplicação.
 
 <br/>
-<img src="./.github/images/Diagramas c4 model eng soft II-API.png" />
+
+### Diagrama de Contexto
+![Diagrama de Contexto](.github/images/Diagramas%20c4%20model%20eng%20soft%20II-Sistema.drawio.png)
+
+---
+
+### Diagrama de Container
+![Diagrama de Container](.github/images/Diagramas%20c4%20model%20eng%20soft%20II-Sistema%20de%20locação.drawio.png)
+
+---
+
+### Diagrama de Componente
+![Diagrama de Componente](.github/images/Diagramas%20c4%20model%20eng%20soft%20II-API.png)
